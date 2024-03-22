@@ -1,0 +1,3 @@
+[submodule "gecko-data"]
+	path = gecko-data
+	url = https://github.com/ul-mds/gecko-data.git
