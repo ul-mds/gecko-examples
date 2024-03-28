@@ -160,3 +160,7 @@ def generate(dataset: str, n: int, seed: int, output_dir: Path):
     else:
         click.echo(f"Unimplemented dataset `{dataset}`", err=True)
         exit(1)
+
+
+if __name__ == "__main__":
+    cli()
