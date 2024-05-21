@@ -1,7 +1,7 @@
 import time
 import timeit
 from pathlib import Path
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 import click
 import numpy as np
@@ -38,8 +38,20 @@ def cli():
 @click.option(
     "--iterations", "-i", default=100, help="Number of times to run dataset generation."
 )
+@click.option(
+    "--output-file",
+    "-o",
+    default=None,
+    type=click.Path(dir_okay=False, file_okay=True, path_type=Path),
+    help="File to write recorded times (in nanoseconds) to.",
+)
 def benchmark(
-    dataset: str, n: int, time_unit: str, warmup_iterations: int, iterations: int
+    dataset: str,
+    n: int,
+    time_unit: str,
+    warmup_iterations: int,
+    iterations: int,
+    output_file: Optional[Path],
 ):
     """Test Gecko's performance by timing data generation."""
 
@@ -95,6 +107,10 @@ def benchmark(
         dataset_fn_times = np.array(
             [_measure_once(dataset_fn) for _ in bar], dtype=float
         )
+
+    if output_file is not None:
+        with output_file.open(mode="w", encoding="utf-8") as f:
+            f.writelines([f"{int(t)}\n" for t in dataset_fn_times])
 
     dataset_fn_times /= time_unit_div
 

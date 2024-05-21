@@ -95,6 +95,8 @@ Options:
                                   Number of times to run dataset generation
                                   before measuring execution times.
   -i, --iterations INTEGER        Number of times to run dataset generation.
+  -o, --output-file FILE          File to write recorded times (in
+                                  nanoseconds) to.
   --help                          Show this message and exit.
 ```
 
