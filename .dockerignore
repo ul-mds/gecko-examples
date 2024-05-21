@@ -1,0 +1,5 @@
+.github
+.idea
+gecko-data
+.ruff_cache
+output
