@@ -30,8 +30,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,prefix=sha.
-            type=raw,value={{date '[dev.]YYYY-MM-DD[T]HH-mm-ss[Z]'}}
+            type=sha
+            type=raw,value={{date '[dev-]YYYY-MM-DD[T]HH-mm-ss[Z]'}}
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
